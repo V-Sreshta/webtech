@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="movieRentalApp">
+<head>
+    <title>Movie Rental Store</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script> 
+</head>
+<body ng-controller="MovieController">
+
+    <h2>Movie Rental Store</h2>
+
+    <select ng-model="selectedGenre">
+        <option value="">All Genres</option>
+        <option value="Action">Action</option>
+        <option value="Sci-Fi">Sci-Fi</option>
+        <option value="Drama">Drama</option>
+    </select>
+
+    <select ng-model="selectedYear">
+        <option value="">All Years</option>
+        <option value="2010">2010</option>
+        <option value="2014">2014</option>
+        <option value="2019">2019</option>
+    </select>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Year</th>
+                <th>Rental Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="movie in movies | filter: { genre: selectedGenre } | filter: { year: selectedYear }">
+                <td>{{ movie.title }}</td>
+                <td>{{ movie.genre }}</td>
+                <td>{{ movie.year }}</td>
+                <td>{{ movie.rentalPrice | currency }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
